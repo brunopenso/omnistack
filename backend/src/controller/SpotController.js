@@ -18,6 +18,7 @@ module.exports = {
             return res.status(400).json('user does not exists');
         }
         let spot = await Spot.find({ company });
+        
         if (!spot) {
             spot = await Spot.create({
                 user: userid,
