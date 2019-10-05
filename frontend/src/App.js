@@ -7,10 +7,13 @@ function App() {
 
   const [email, setEmail] = useState('');
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    console.log(email);
+    //api.post('/sessions', {email: email});
+    //use reduced form, since attribute are the same of the query parameter
+    const response = await api.post('/sessions', {email});
+    console.log(response);
   }
 
   return (
