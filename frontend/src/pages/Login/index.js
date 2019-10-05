@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import api from '../../services/api';
 
-export default function Login() {
+//using the {} on the constructor it is possible to get only the attributes that you need
+export default function Login({ history }) {
+    const [email, setEmail] = useState('');
 
+    async function handleSubmit(event) {
+        event.preventDefault();
 
-  const [email, setEmail] = useState('');
+        //api.post('/sessions', {email: email});
+        //use reduced form, since attribute are the same of the query parameter
+        const response = await api.post('/sessions', {email});
+        const { _id } = response.data;
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+        localStorage.setItem('user', _id);
 
-    //api.post('/sessions', {email: email});
-    //use reduced form, since attribute are the same of the query parameter
-    const response = await api.post('/sessions', {email});
-    const { _id } = response.data;
-
-    localStorage.setItem('user', _id);
-  }
+        history.push('/dashboard');
+    }
 
     return (
         <>
