@@ -13,7 +13,9 @@ function App() {
     //api.post('/sessions', {email: email});
     //use reduced form, since attribute are the same of the query parameter
     const response = await api.post('/sessions', {email});
-    console.log(response);
+    const { _id } = response.data;
+
+    localStorage.setItem('user', _id);
   }
 
   return (
