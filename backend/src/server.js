@@ -24,7 +24,7 @@ mongoose.connect(mongoUrl,
 app.use(cors({origin: '*'}));
 //tells to express to understand json body messages
 app.use(express.json());
-app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));
+app.use('/files', express.static(path.resolve(__dirname, '..', 'upload')));
 //use the routes files
 app.use(routes);
 app.listen(3333);
