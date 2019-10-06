@@ -7,8 +7,24 @@ const socketio = require('socket.io');
 const http = require('http')
 
 const app = express();
-const server = http.server(app);
+const server = http.Server(app);
 const io = socketio(server);
+
+//use a BD for production porpuse to keep the data
+const connectedUsers = {};
+
+io.on('connection', socket => {
+    const userid = socket.handshake.query.userid;
+
+    connectedUsers[userid] = socket.id;
+});
+// add the io for all request. Must call next to continue the flow
+app.use((req,res, next) => {
+    req.io = io;
+    req.connectedUsers = connectedUsers;
+
+    return next();
+});
 
 const mongoUrl = "mongodb+srv://omnistack:omnistack@omnistack-oi2ie.mongodb.net/mydb?retryWrites=true&w=majority";
 
