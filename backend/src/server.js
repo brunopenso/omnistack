@@ -3,7 +3,13 @@ const routes = require('./routes')
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const socketio = require('socket.io');
+const http = require('http')
+
 const app = express();
+const server = http.server(app);
+const io = socketio(server);
+
 const mongoUrl = "mongodb+srv://omnistack:omnistack@omnistack-oi2ie.mongodb.net/mydb?retryWrites=true&w=majority";
 
 mongoose.connect(mongoUrl,
@@ -27,4 +33,5 @@ app.use(express.json());
 app.use('/files', express.static(path.resolve(__dirname, '..', 'upload')));
 //use the routes files
 app.use(routes);
-app.listen(3333);
+
+server.listen(3333);
