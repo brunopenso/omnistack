@@ -4,4 +4,4 @@ Use genymotion to emulate on the desktop
 
 docs.rocketseat.dev > documentation of how to run without expo
 
-All styles components by default are flex oriented
+All styles components by default are "display: flex"
