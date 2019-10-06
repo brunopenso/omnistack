@@ -30,7 +30,6 @@ function SpotList({tech, navigation}) {
         navigation.navigate('Book', { id } );
     }
     function getUrl(text) {
-        console.log(text);
         return text;
     }
     return (
