@@ -29,7 +29,10 @@ function SpotList({tech, navigation}) {
     function handleNavigation(id) {
         navigation.navigate('Book', { id } );
     }
-
+    function getUrl(text) {
+        console.log(text);
+        return text;
+    }
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Empresas que usam <Text style={styles.bold}>{tech}</Text></Text>
@@ -42,7 +45,7 @@ function SpotList({tech, navigation}) {
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => (
                     <View style={styles.listItem}>
-                        <Image source={{ uri: item.thumbnail_url}} style={styles.thumbnail}/>
+                        <Image source={{ uri: getUrl(item.thumbnail_url)}} style={styles.thumbnail}/>
                         <Text style={styles.company}>{item.company}</Text>
                         <Text style={styles.price}>{item.price ? `R$${item.price}/dia`: 'Gratuito'}</Text>
                         <TouchableOpacity style={styles.button} onPress={() => handleNavigation(item._id)}>
